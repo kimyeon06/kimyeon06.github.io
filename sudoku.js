@@ -5,28 +5,32 @@
   const status = document.querySelector('#sudoku-status');
   if (!grid || !checkButton || !resetButton || !status) return;
 
-  const puzzle = [
-    5, 3, 0, 0, 7, 0, 0, 0, 0,
-    6, 0, 0, 1, 9, 5, 0, 0, 0,
-    0, 9, 8, 0, 0, 0, 0, 6, 0,
-    8, 0, 0, 0, 6, 0, 0, 0, 3,
-    4, 0, 0, 8, 0, 3, 0, 0, 1,
-    7, 0, 0, 0, 2, 0, 0, 0, 6,
-    0, 6, 0, 0, 0, 0, 2, 8, 0,
-    0, 0, 0, 4, 1, 9, 0, 0, 5,
-    0, 0, 0, 0, 8, 0, 0, 7, 9
-  ];
-  const solution = [
-    5, 3, 4, 6, 7, 8, 9, 1, 2,
-    6, 7, 2, 1, 9, 5, 3, 4, 8,
-    1, 9, 8, 3, 4, 2, 5, 6, 7,
-    8, 5, 9, 7, 6, 1, 4, 2, 3,
-    4, 2, 6, 8, 5, 3, 7, 9, 1,
-    7, 1, 3, 9, 2, 4, 8, 5, 6,
-    9, 6, 1, 5, 3, 7, 2, 8, 4,
-    2, 8, 7, 4, 1, 9, 6, 3, 5,
-    3, 4, 5, 2, 8, 6, 1, 7, 9
-  ];
+  let puzzle = [];
+  let solution = [];
+
+  function shuffle(items) {
+    const result = [...items];
+    for (let index = result.length - 1; index > 0; index -= 1) {
+      const swapIndex = Math.floor(Math.random() * (index + 1));
+      [result[index], result[swapIndex]] = [result[swapIndex], result[index]];
+    }
+    return result;
+  }
+
+  function createPuzzle() {
+    const digits = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    const base = (row, column) => (row * 3 + Math.floor(row / 3) + column) % 9;
+    const solved = Array.from({ length: 9 }, (_, row) => (
+      Array.from({ length: 9 }, (_, column) => digits[base(row, column)])
+    ));
+    const rowOrder = shuffle([0, 1, 2]).flatMap((band) => shuffle([0, 1, 2]).map((row) => band * 3 + row));
+    const columnOrder = shuffle([0, 1, 2]).flatMap((stack) => shuffle([0, 1, 2]).map((column) => stack * 3 + column));
+    solution = rowOrder.flatMap((row) => columnOrder.map((column) => solved[row][column]));
+    puzzle = Array(81).fill(0);
+    shuffle([...Array(81).keys()]).slice(0, 36).forEach((index) => {
+      puzzle[index] = solution[index];
+    });
+  }
 
   function createGrid() {
     grid.replaceChildren();
@@ -75,14 +79,13 @@
   }
 
   function resetPuzzle() {
-    grid.querySelectorAll('.sudoku-cell').forEach((cell, index) => {
-      cell.value = puzzle[index] ? String(puzzle[index]) : '';
-      cell.classList.remove('is-invalid');
-    });
-    status.textContent = '초기화했습니다. 다시 도전해 보세요.';
+    createPuzzle();
+    createGrid();
+    status.textContent = '새 퍼즐을 만들었습니다. 다시 도전해 보세요.';
   }
 
   checkButton.addEventListener('click', checkPuzzle);
   resetButton.addEventListener('click', resetPuzzle);
+  createPuzzle();
   createGrid();
 })();
