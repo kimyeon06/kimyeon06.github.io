@@ -28,17 +28,22 @@
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
           <p class="eyebrow">CALL &amp; MESSAGE CONTINUITY</p>
-          <h1 id="hero-title">연결의 흐름을 설계합니다.</h1>
+          <h1 id="hero-title">Stephanie Kim</h1>
           <p class="hero-text">CMC를 중심으로 기기와 경험 사이의 자연스러운 연결을 탐구합니다.</p>
           <a class="button" href="#about">CMC 보기</a>
         </div>
-        <img class="profile-image" src="assets/profile-portrait.png" alt="프로필 일러스트">
+        <img class="profile-image" src="assets/profile-portrait.png" alt="Stephanie Kim 프로필 일러스트">
       </section>
 
       <section id="about" class="content-section" aria-labelledby="about-title">
         <p class="eyebrow">01 / CMC</p>
         <h2 id="about-title">Call and Message Continuity</h2>
-        <p>통화와 메시지의 연속성을 위한 기술에 집중합니다.</p>
+        <p>삼성전자의 CMC는 호환되는 Galaxy 기기를 같은 Samsung Account로 연결해, 스마트폰이 가까이 있지 않아도 다른 Galaxy 기기에서 통화와 문자를 이어 사용할 수 있도록 돕는 기술입니다.</p>
+        <p class="source-note"><a href="https://www.samsung.com/in/support/mobile-devices/using-call-and-text-on-other-devices/" target="_blank" rel="noreferrer">삼성전자 공식 지원 문서에서 더 알아보기</a></p>
+        <div class="interest-list" aria-labelledby="interest-title">
+          <h3 id="interest-title">Interests</h3>
+          <p>생성형 AI · LLM · AI Agent · 자동화 시스템 · 소프트웨어 엔지니어링</p>
+        </div>
       </section>
 
       <section id="projects" class="content-section" aria-labelledby="projects-title">
@@ -50,7 +55,7 @@
       <section id="games" class="content-section game-section" aria-labelledby="games-title">
         <p class="eyebrow">03 / GAMES</p>
         <h2 id="games-title">Games</h2>
-        <p>연결의 흐름을 따라가며 음식을 모으고, 폭발하는 적을 피하세요.</p>
+        <p>연결의 흐름을 따라가며 음식을 모으고, 폭발하는 적을 피하세요. 시간만 흘렀다고 게임 오버가 되지 않으며, 벽·자기 몸·활성 적과 부딪힐 때만 종료됩니다.</p>
         <div class="game-panel">
           <div class="game-toolbar">
             <div class="scoreboard" aria-live="polite">
@@ -77,6 +82,21 @@
           </div>
           <p class="game-help">방향키·WASD·스와이프 또는 방향 버튼으로 이동합니다. 적은 생성 5초 후 폭발하고 2초 뒤 다시 나타납니다.</p>
         </div>
+
+        <div class="sudoku-panel" aria-labelledby="sudoku-title">
+          <div class="sudoku-heading">
+            <div>
+              <p class="eyebrow">04 / SUDOKU</p>
+              <h3 id="sudoku-title">중급 수도쿠</h3>
+            </div>
+            <div class="sudoku-actions">
+              <button id="sudoku-check" type="button">정답 확인</button>
+              <button id="sudoku-reset" type="button">초기화</button>
+            </div>
+          </div>
+          <div id="sudoku-grid" class="sudoku-grid" role="grid" aria-label="중급 수도쿠 퍼즐"></div>
+          <p id="sudoku-status" class="game-help" aria-live="polite">빈칸을 1부터 9까지 입력해 보세요.</p>
+        </div>
       </section>
 
       <section id="contact" class="content-section" aria-labelledby="contact-title">
@@ -87,5 +107,6 @@
     </main>
 
     <footer class="site-footer">CMC Portfolio</footer>
+    <script src="sudoku.js" defer></script>
   </body>
 </html>
