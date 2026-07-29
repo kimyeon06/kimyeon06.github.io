@@ -93,6 +93,13 @@ h2 { margin: 0 0 1rem; font-size: clamp(2rem, 4vw, 3.4rem); }
 .sudoku-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .sudoku-heading h3 { margin: 0; font-size: 1.6rem; }
 .sudoku-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.sudoku-help { position: relative; }
+.sudoku-help summary { padding: 0.55rem 0.8rem; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); background: var(--surface); font-weight: 700; cursor: pointer; list-style: none; }
+.sudoku-help summary::-webkit-details-marker { display: none; }
+.sudoku-help summary:hover, .sudoku-help summary:focus-visible { border-color: var(--blue); color: var(--blue); }
+.sudoku-help-content { position: absolute; z-index: 2; right: 0; width: min(22rem, calc(100vw - 3rem)); margin-top: 0.5rem; padding: 1rem; border: 1px solid var(--line); border-radius: 12px; color: var(--muted); background: var(--surface); box-shadow: var(--shadow); font-size: 0.85rem; }
+.sudoku-help-content p { margin: 0 0 0.65rem; }
+.sudoku-help-content p:last-child { margin-bottom: 0; }
 .sudoku-actions button { padding: 0.55rem 0.8rem; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); background: var(--surface); font: inherit; font-weight: 700; cursor: pointer; }
 .sudoku-actions button:hover, .sudoku-actions button:focus-visible { border-color: var(--blue); color: var(--blue); }
 .sudoku-grid { display: grid; grid-template-columns: repeat(9, minmax(2rem, 3rem)); width: min(100%, 27rem); margin: 1rem auto 0; border: 2px solid var(--ink); }
